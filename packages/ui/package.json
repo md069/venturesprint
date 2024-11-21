@@ -12,23 +12,19 @@
       "import": "./src/index.tsx",
       "require": "./src/index.tsx"
     },
-    "./button": {
-      "types": "./src/components/button.tsx",
-      "import": "./src/components/button.tsx"
+    "./cn": {
+      "types": "./src/utils/cn.ts",
+      "import": "./src/utils/cn.ts",
+      "require": "./src/utils/cn.ts"
     },
-    "./card": {
-      "types": "./src/components/card.tsx",
-      "import": "./src/components/card.tsx"
-    },
-    "./accordion": {
-      "types": "./src/components/accordion.tsx",
-      "import": "./src/components/accordion.tsx"
-    },
-    "./globals.css": "./src/globals.css",
+    "./styles.css": "./dist/index.css",
+    "./postcss.config": "./postcss.config.js",
     "./tailwind.config": "./tailwind.config.ts",
-    "./postcss.config": "./postcss.config.js"
+    "./globals.css": "./src/globals.css"
   },
   "dependencies": {
-    "@radix-ui/react-icons": "^1.3.2"
+    "@radix-ui/react-icons": "^1.3.2",
+    "clsx": "^2.0.0",
+    "tailwind-merge": "^2.0.0"
   }
 }
