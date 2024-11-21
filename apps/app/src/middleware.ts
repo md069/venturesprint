@@ -14,7 +14,10 @@ export async function middleware(request: NextRequest) {
     I18nMiddleware(request),
   );
 
-  if (!request.nextUrl.pathname.endsWith("/login") && !user) {
+  const isAppDashboardRoute = request.nextUrl.pathname.startsWith('/(dashboard)') && 
+    request.headers.get('host')?.includes('app.');
+
+  if (isAppDashboardRoute && !user) {
     return NextResponse.redirect(new URL("/login", request.url));
   }
 
