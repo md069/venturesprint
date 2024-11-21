@@ -14,12 +14,12 @@ export async function middleware(request: NextRequest) {
     I18nMiddleware(request),
   );
 
-  // Check if we're on the app subdomain
-  const isAppDomain = request.headers.get('host')?.startsWith('app.');
+  // Check if we're on the app routes
+  const isAppRoute = request.nextUrl.pathname.startsWith('/app');
   
-  // Only check auth for app subdomain routes
-  if (isAppDomain && !request.nextUrl.pathname.endsWith("/login") && !user) {
-    return NextResponse.redirect(new URL("/login", request.url));
+  // Only check auth for app routes (excluding login)
+  if (isAppRoute && !request.nextUrl.pathname.endsWith("/login") && !user) {
+    return NextResponse.redirect(new URL("/app/login", request.url));
   }
 
   return response;
