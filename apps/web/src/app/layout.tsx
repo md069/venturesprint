@@ -13,10 +13,9 @@ const DepartureMono = localFont({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://v1.run"),
-  title: "Create v1",
-  description:
-    "A free, open-source starter kit for your next project, built with insights from Midday.",
+  metadataBase: new URL("https://www.venturesprint.io/"),
+  title: "VentureSprint - From Idea to Startup - fast",
+  description: "Confidently build startups with our AI-driven validation framework. Validate your ideas in just 14 days with VentureSprint.",
 };
 
 export default function RootLayout({
