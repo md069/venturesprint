@@ -1,7 +1,7 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "buildCommand": "turbo build",
-  "ignoreCommand": "turbo run lint",
+  "ignoreCommand": "exit 0",
   "rewrites": [
     { "source": "/app/:path*", "destination": "apps/app/:path*" },
     { "source": "/:path*", "destination": "apps/web/:path*" }
