@@ -43,7 +43,13 @@
       "cache": false
     },
     "lint": {
-      "dependsOn": ["^topo"]
+      "dependsOn": ["^topo"],
+      "env": [
+        "PROJECT_ID",
+        "GOOGLE_CLIENT_ID",
+        "GOOGLE_SECRET",
+        "SUPABASE_SERVICE_KEY"
+      ]
     },
     "typecheck": {
       "dependsOn": ["^topo"],
