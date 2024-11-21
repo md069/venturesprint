@@ -14,7 +14,7 @@ const DepartureMono = localFont({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.venturesprint.io/"),
-  title: "VentureSprint - From Idea to Startup - fast",
+  title: "VentureSprint - From Idea to Startup, fast",
   description: "Confidently build startups with our AI-driven validation framework. Validate your ideas in just 14 days with VentureSprint.",
 };
 
