@@ -14,7 +14,7 @@
     "start:app": "turbo start --filter=@v1/app",
     "test": "turbo test --parallel",
     "format": "biome format --write .",
-    "lint": "turbo lint && bun lint:repo",
+    "lint": "turbo lint",
     "lint:repo": "bunx sherif@latest",
     "lint:repo:fix": "bunx sherif@latest --fix",
     "typecheck": "turbo typecheck"

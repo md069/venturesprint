@@ -6,7 +6,7 @@
     "dev": "next dev -p 3000",
     "build": "next build",
     "clean": "git clean -xdf .next .turbo node_modules",
-    "lint": "biome lint",
+    "lint": "biome lint .",
     "format": "biome format --write .",
     "start": "next start",
     "typecheck": "tsc --noEmit"
@@ -33,6 +33,7 @@
     "@types/node": "^22",
     "@types/react": "^18",
     "@types/react-dom": "^18",
-    "typescript": "^5.5.4"
+    "typescript": "^5.5.4",
+    "@biomejs/biome": "1.8.3"
   }
 }

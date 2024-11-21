@@ -34,6 +34,10 @@
     "tailwindcss": "^3.4.0",
     "tailwindcss-animate": "^1.0.7",
     "postcss": "^8.4.31",
-    "autoprefixer": "^10.4.16"
+    "autoprefixer": "^10.4.16",
+    "@biomejs/biome": "1.8.3"
+  },
+  "scripts": {
+    "lint": "biome lint ."
   }
 }
