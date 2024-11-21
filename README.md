@@ -1,6 +1,5 @@
 ![hero](image.png)
 
-
 <p align="center">
 	<h1 align="center"><b>Create v1</b></h1>
 <p align="center">
@@ -9,129 +8,311 @@
     <br />
     <a href="https://v1.run"><strong>Website</strong></a> · 
     <a href="https://github.com/midday-ai/v1/issues"><strong>Issues</strong></a> · 
-    <a href="#whats-included"><strong>What's included</strong></a> ·
+    <a href="#tech-stack"><strong>Tech Stack</strong></a> ·
     <a href="#prerequisites"><strong>Prerequisites</strong></a> ·
-    <a href="#getting-started"><strong>Getting Started</strong></a> ·
-    <a href="#how-to-use"><strong>How to use</strong></a>
+    <a href="#getting-started"><strong>Getting Started</strong></a>
   </p>
 </p>
 
-Everything you need to build a production ready SaaS, it's a opinionated stack based on learnings from building Midday using the latest Next.js framework, it's a monorepo with a focus on code reuse and best practices that will grow with your business.
+## Overview
 
-## What's included
+Create v1 is a production-ready SaaS starter kit built with modern technologies. It's structured as a monorepo using Turborepo, focusing on code reusability, type safety, and scalability. The project includes everything from authentication to analytics, making it ideal for building robust SaaS applications.
 
-[Next.js](https://nextjs.org/) - Framework<br>
-[Turborepo](https://turbo.build) - Build system<br>
-[Biome](https://biomejs.dev) - Linter, formatter<br>
-[TailwindCSS](https://tailwindcss.com/) - Styling<br>
-[Shadcn](https://ui.shadcn.com/) - UI components<br>
-[TypeScript](https://www.typescriptlang.org/) - Type safety<br>
-[Supabase](https://supabase.com/) - Authentication, database, storage<br>
-[Upstash](https://upstash.com/) - Cache and rate limiting<br>
-[React Email](https://react.email/) - Email templates<br>
-[Resend](https://resend.com/) - Email delivery<br>
-[i18n](https://next-international.vercel.app/) - Internationalization<br>
-[Sentry](https://sentry.io/) - Error handling/monitoring<br>
-[Dub](https://dub.sh/) - Sharable links<br>
-[Trigger.dev](https://trigger.dev/) - Background jobs<br>
-[OpenPanel](https://openpanel.dev/) - Analytics<br>
-[Polar](https://polar.sh) - Billing (coming soon)<br>
-[react-safe-action](https://next-safe-action.dev) - Validated Server Actions<br>
-[nuqs](https://nuqs.47ng.com/) - Type-safe search params state manager<br>
-[next-themes](https://next-themes-example.vercel.app/) - Theme manager<br>
+## Tech Stack
 
-## Directory Structure
+### Core Framework & Build Tools
+- **[Next.js 14+](https://nextjs.org/)** - React framework with App Router
+- **[Turborepo](https://turbo.build)** - Monorepo build system
+- **[Biome](https://biomejs.dev)** - Fast linter and formatter
+- **[TypeScript](https://www.typescriptlang.org/)** - Type safety
+
+### Frontend
+- **[TailwindCSS](https://tailwindcss.com/)** - Utility-first CSS
+- **[Shadcn UI](https://ui.shadcn.com/)** - Accessible component system
+- **[next-themes](https://next-themes-example.vercel.app/)** - Dark/light mode
+- **[nuqs](https://nuqs.47ng.com/)** - Type-safe URL state management
+
+### Backend & Infrastructure
+- **[Supabase](https://supabase.com/)** - Auth, Database, Storage
+- **[Upstash](https://upstash.com/)** - Redis cache & rate limiting
+- **[Trigger.dev](https://trigger.dev/)** - Background job processing
+- **[react-safe-action](https://next-safe-action.dev)** - Type-safe server actions
+
+### Developer Experience
+- **[i18n](https://next-international.vercel.app/)** - Internationalization
+- **[Sentry](https://sentry.io/)** - Error tracking
+- **[OpenPanel](https://openpanel.dev/)** - Analytics
+- **[Dub](https://dub.sh/)** - Link management
+
+### Communication
+- **[React Email](https://react.email/)** - Email templates
+- **[Resend](https://resend.com/)** - Email delivery
+
+## Project Structure
 
 ```
 .
-├── apps                         # App workspace
-│    ├── api                     # Supabase (API, Auth, Storage, Realtime, Edge Functions)
-│    ├── app                     # App - your product
-│    ├── web                     # Marketing site
-│    └── ...
-├── packages                     # Shared packages between apps
-│    ├── analytics               # OpenPanel analytics
-│    ├── email                   # React email library
-│    ├── jobs                    # Trigger.dev background jobs
-│    ├── kv                      # Upstash rate-limited key-value storage
-│    ├── logger                  # Logger library
-│    ├── supabase                # Supabase - Queries, Mutations, Clients
-│    └── ui                      # Shared UI components (Shadcn)
-├── tooling                      # are the shared configuration that are used by the apps and packages
-│    └── typescript              # Shared TypeScript configuration
-├── .cursorrules                 # Cursor rules specific to this project
-├── biome.json                   # Biome configuration
-├── turbo.json                   # Turbo configuration
-├── LICENSE
-└── README.md
+├── apps/                        # Application workspace
+│   ├── api/                    # Supabase backend
+│   │   ├── migrations/        # Database migrations
+│   │   └── seed/             # Seed data
+│   ├── app/                   # Main SaaS application
+│   │   ├── src/
+│   │   ├── public/
+│   │   └── .env.example
+│   └── web/                   # Marketing website
+│
+├── packages/                    # Shared packages
+│   ├── analytics/             # OpenPanel integration
+│   ├── email/                 # Email templates
+│   ├── jobs/                  # Background jobs
+│   ├── kv/                    # Key-value storage
+│   ├── logger/               # Logging utilities
+│   ├── supabase/             # Database client & types
+│   └── ui/                   # Shared UI components
+│
+└── tooling/                    # Shared configurations
+    └── typescript/            # TypeScript config
 ```
 
 ## Prerequisites
 
-Bun<br>
-Docker<br>
-Upstash<br>
-Dub<br>
-Trigger.dev<br>
-Resend<br>
-Supabase<br>
-Sentry<br>
-OpenPanel<br>
+Before you begin, ensure you have accounts and API keys for:
+
+1. **Development Environment**
+   - [Bun](https://bun.sh/) - JavaScript runtime & package manager
+   - [Docker](https://www.docker.com/) - Container platform
+
+2. **Core Services**
+   - [Supabase](https://supabase.com/) - Database & Auth
+   - [Upstash](https://upstash.com/) - Redis instance
+   - [Resend](https://resend.com/) - Email service
+
+3. **Monitoring & Analytics**
+   - [Sentry](https://sentry.io/) - Error tracking
+   - [OpenPanel](https://openpanel.dev/) - Analytics
+   - [Dub](https://dub.sh/) - Link tracking
+   - [Trigger.dev](https://trigger.dev/) - Job processing
 
 ## Getting Started
 
-Clone this repo locally with the following command:
-
+1. **Clone the Repository**
 ```bash
 bunx degit midday-ai/v1 v1
+cd v1
 ```
 
-1. Install dependencies using bun:
-
-```sh
-bun i
+2. **Install Dependencies**
+```bash
+bun install
 ```
 
-2. Copy `.env.example` to `.env` and update the variables.
-
-```sh
-# Copy .env.example to .env for each app
+3. **Environment Setup**
+```bash
+# Copy environment files
 cp apps/api/.env.example apps/api/.env
 cp apps/app/.env.example apps/app/.env
 cp apps/web/.env.example apps/web/.env
 ```
 
-4. Start the development server from either bun or turbo:
+4. **Configure Environment Variables**
 
-```ts
-bun dev // starts everything in development mode (web, app, api, email)
-bun dev:web // starts the web app in development mode
-bun dev:app // starts the app in development mode
-bun dev:api // starts the api in development mode
-bun dev:email // starts the email app in development mode
+Required variables for each app:
 
-// Database
-bun migrate // run migrations
-bun seed // run seed
+`apps/app/.env`:
+```env
+NEXT_PUBLIC_SUPABASE_URL=
+NEXT_PUBLIC_SUPABASE_ANON_KEY=
+SUPABASE_SERVICE_KEY=
+NEXT_PUBLIC_SENTRY_DSN=
+RESEND_API_KEY=
+UPSTASH_REDIS_REST_URL=
+UPSTASH_REDIS_REST_TOKEN=
+NEXT_PUBLIC_OPENPANEL_CLIENT_ID=
 ```
 
-## How to use
-This boilerplate is inspired by our work on Midday, and it's designed to serve as a reference for real-world apps. Feel free to dive into the code and see how we've tackled various features. Whether you're looking to understand authentication flows, database interactions, or UI components, you'll find practical, battle-tested implementations throughout the codebase. It's not just a starting point; it's a learning resource that can help you build your own applications.
+`apps/api/.env`:
+```env
+SUPABASE_DB_URL=
+GOOGLE_CLIENT_ID=
+GOOGLE_SECRET=
+```
 
-With this, you have a great starting point for your own project.
+5. **Development Commands**
+```bash
+# Start all services
+bun dev
 
-## Deploy to Vercel
+# Individual services
+bun dev:web    # Marketing site
+bun dev:app    # Main application
+bun dev:api    # API service
+bun dev:email  # Email preview
 
-Vercel deployment will guide you through creating a Supabase account and project.
+# Database operations
+bun migrate    # Run migrations
+bun seed       # Seed database
+```
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fmidday-ai%2Fv1&env=RESEND_API_KEY,UPSTASH_REDIS_REST_URL,UPSTASH_REDIS_REST_TOKEN,SENTRY_AUTH_TOKEN,NEXT_PUBLIC_SENTRY_DSN,SENTRY_ORG,SENTRY_PROJECT,DUB_API_KEY,NEXT_PUBLIC_OPENPANEL_CLIENT_ID,OPENPANEL_SECRET_KEY&project-name=create-v1&repository-name=create-v1&redirect-url=https%3A%2F%2Fv1.run&demo-title=Create%20v1&demo-description=An%20open-source%20starter%20kit%20based%20on%20Midday.&demo-url=https%3A%2F%2Fv1.run&demo-image=https%3A%2F%2Fv1.run%2Fopengraph-image.png&integration-ids=oac_VqOgBHqhEoFTPzGkPd7L0iH6)
+## Development Workflow
 
-## Recognition
+1. **Database Changes**
+   - Add migrations in `apps/api/migrations`
+   - Update types in `packages/supabase/types`
+   - Run `bun migrate` to apply changes
 
-<a href="https://news.ycombinator.com/item?id=41408929">
-  <img
-    style="width: 250px; height: 54px;" width="250" height="54"
-    alt="Featured on Hacker News"
-    src="https://hackernews-badge.vercel.app/api?id=41408929"
-  />
-</a>
+2. **Adding Features**
+   - Server components go in `apps/app/src/app`
+   - Client components use `'use client'` directive
+   - Shared UI components go in `packages/ui`
+
+3. **Environment Types**
+   - Add new env vars to `apps/app/src/env.mjs`
+   - Run validation during development
+
+## Deployment
+
+### Manual Deployment
+
+1. Push your repository to GitHub
+2. Connect to Vercel
+3. Configure environment variables
+4. Deploy each app separately:
+   - `apps/web` - Marketing site
+   - `apps/app` - Main application
+   - `apps/api` - Supabase API
+
+## Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Commit changes
+4. Open a pull request
+
+## Support
+
+- [GitHub Issues](https://github.com/midday-ai/v1/issues)
+- [Documentation](https://v1.run)
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## Service Use Cases
+
+### Supabase
+- **Authentication:** Social login (Google, GitHub), magic links, and role-based access
+- **Database:** 
+  - User profiles and preferences
+  - Team collaboration features
+  - Subscription and billing status
+- **Storage:** User avatar uploads, document attachments
+- **Edge Functions:** Webhook handlers, third-party integrations
+
+### Trigger.dev
+- **Scheduled Tasks:**
+  - Daily digest emails
+  - Subscription renewal reminders
+  - Data cleanup and maintenance
+- **Event-Driven Jobs:**
+  - Welcome sequence after signup
+  - Payment processing webhooks
+  - Team invitation notifications
+
+### Upstash Redis
+- **Caching:**
+  - API response caching
+  - User session data
+  - Frequently accessed settings
+- **Rate Limiting:**
+  - API endpoint protection
+  - Login attempt restrictions
+  - File upload limits
+- **Feature Flags:**
+  - A/B testing
+  - Gradual feature rollouts
+  - Beta user management
+
+### OpenPanel Analytics
+- **User Behavior:**
+  - Feature usage tracking
+  - Conversion funnel analysis
+  - Session recordings
+- **Business Metrics:**
+  - Subscription analytics
+  - Revenue tracking
+  - User retention metrics
+
+### Resend & React Email
+- **Transactional Emails:**
+  - Welcome messages
+  - Password reset
+  - Team invitations
+- **Marketing Communications:**
+  - Newsletter templates
+  - Product updates
+  - Feature announcements
+
+## Database Structure
+
+### Core Tables
+1. **users**
+   - Basic profile information
+   - Authentication details
+   - Preferences
+
+2. **teams**
+   - Team details
+   - Billing information
+   - Subscription status
+
+3. **team_members**
+   - User-team relationships
+   - Role assignments
+   - Access permissions
+
+### Feature Tables
+1. **projects**
+   - Project metadata
+   - Team association
+   - Collaboration settings
+
+2. **documents**
+   - Content storage
+   - Version control
+   - Access permissions
+
+3. **activities**
+   - User actions
+   - System events
+   - Audit logs
+
+## Common Workflows
+
+### User Onboarding
+1. User signs up with social/email
+2. Welcome email triggered
+3. Profile completion flow
+4. Team creation/joining
+5. Feature introduction tour
+
+### Team Collaboration
+1. Team creation by user
+2. Member invitations sent
+3. Role assignment
+4. Resource sharing setup
+5. Activity tracking
+
+### Subscription Management
+1. Plan selection
+2. Payment processing
+3. Feature access update
+4. Team limits adjustment
+5. Usage tracking
+
+### Content Management
+1. Document creation
+2. Storage handling
+3. Permission setting
+4. Version tracking
+5. Activity logging

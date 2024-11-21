@@ -1,25 +1,17 @@
-import baseConfig from "@v1/ui/tailwind.config";
-import type { Config } from "tailwindcss";
+import type { Config } from "tailwindcss"
+import sharedConfig from "@v1/ui/tailwind.config"
 
-export default {
-  content: ["./src/**/*.{ts,tsx}", "../../packages/ui/src/**/*.{ts,tsx}"],
-  presets: [baseConfig],
+const config: Config = {
+  content: [
+    "./src/**/*.{js,ts,jsx,tsx,mdx}",
+    "../../packages/ui/src/**/*.{js,ts,jsx,tsx,mdx}"
+  ],
+  presets: [sharedConfig],
   theme: {
     extend: {
-      animation: {
-        marquee: "marquee 25s linear infinite",
-        marquee2: "marquee2 25s linear infinite",
-      },
-      keyframes: {
-        marquee: {
-          "0%": { transform: "translateX(0%)" },
-          "100%": { transform: "translateX(-100%)" },
-        },
-        marquee2: {
-          "0%": { transform: "translateX(100%)" },
-          "100%": { transform: "translateX(0%)" },
-        },
-      },
+      // Add any web-specific theme extensions here
     },
   },
-} satisfies Config;
+}
+
+export default config
