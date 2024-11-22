@@ -6,6 +6,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["src"],
+  "include": ["src", "../../apps/web/src/components/landing-page.tsx"],
   "exclude": ["node_modules"]
 }

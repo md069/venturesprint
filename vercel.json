@@ -20,8 +20,16 @@
   ],
   "routes": [
     {
-      "src": "/app/(.*)",
+      "src": "/app/api/(.*)",
+      "dest": "/apps/app/api/$1"
+    },
+    {
+      "src": "/app/(.+)",
       "dest": "/apps/app/$1"
+    },
+    {
+      "src": "/app",
+      "dest": "/apps/app/en"
     },
     {
       "src": "/(.*)",

@@ -1,17 +1,26 @@
 'use client'
 
 import * as React from "react"
-import { Button } from "../components/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../components/card"
+import { Button } from "../../../../packages/ui/src/components/button"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../../../../packages/ui/src/components/card"
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from "../components/accordion"
-import { CheckCircle, MessageCircle, DollarSign, HelpCircle, Menu, X, Brain, Sparkles, Clock, Target, Rocket, FileText, Users } from 'lucide-react'
+} from "../../../../packages/ui/src/components/accordion"
+import { CheckCircle, MessageCircle, DollarSign, HelpCircle, Menu, X, Brain, Sparkles, Clock, Target, Rocket, FileText, Users, Shield } from 'lucide-react'
 import Image from "next/image"
 import Link from "next/link"
+import { SubscribeForm } from "./subscribe-form"
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "../../../../packages/ui/src/components/dialog";
 
 export function LandingPage() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false)
@@ -33,7 +42,30 @@ export function LandingPage() {
           </nav>
           <div className="flex items-center space-x-4">
             <Button variant="ghost" className="hidden md:inline-flex text-sm">Log in</Button>
-            <Button className="hidden md:inline-flex bg-black hover:bg-gray-800 text-white text-sm">Get Started</Button>
+            <Dialog>
+              <DialogTrigger
+                className="text-sm px-4 py-2 bg-secondary text-primary rounded-full font-medium cursor-pointer"
+                asChild
+              >
+                <span>Get updates</span>
+              </DialogTrigger>
+              <DialogContent>
+                <DialogHeader>
+                  <DialogTitle>Stay updated</DialogTitle>
+                  <DialogDescription>
+                    Subscribe to our newsletter to get the latest news and
+                    updates.
+                  </DialogDescription>
+                </DialogHeader>
+
+                <div className="flex flex-col gap-4">
+                  <SubscribeForm
+                    group="v1-newsletter"
+                    placeholder="Email address"
+                  />
+                </div>
+              </DialogContent>
+            </Dialog>
             <Button variant="ghost" size="icon" className="md:hidden" onClick={toggleMenu}>
               {isMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
             </Button>
@@ -67,6 +99,25 @@ export function LandingPage() {
                   <span>14-day money-back guarantee</span>
                 </div>
               </div>
+
+              <div className="w-full max-w-md mx-auto pt-8">
+                <div className="text-center mb-4 space-y-2">
+                  <p className="text-sm font-medium text-gray-900">
+                    🚀 Apply for Early Access Pilot Program
+                  </p>
+                  <p className="text-xs text-gray-500">
+                    Selected founders get personal support and priority access
+                  </p>
+                </div>
+                <div className="max-w-xl mx-auto">
+                  <SubscribeForm 
+                    group="pilot-program"
+                    placeholder="Enter your email for early access"
+                    className="h-12 rounded-full border-black/20 focus:border-black transition-colors"
+                  />
+                </div>
+              </div>
+
               <div className="pt-8 border-t border-gray-200 w-full max-w-3xl">
                 <p className="text-sm text-gray-500 mb-6">Trusted by 1000+ entrepreneurs from</p>
                 <div className="flex flex-wrap justify-center items-center gap-x-12 gap-y-8 grayscale opacity-60">
@@ -111,7 +162,7 @@ export function LandingPage() {
           </div>
         </section>
 
-        <section className="py-24 bg-white border-y border-gray-200">
+        <section className="py-24 bg-[#f6f5f4]">
           <div className="container px-4 md:px-6">
             <div className="grid gap-8 md:grid-cols-3 text-center">
               <div>
@@ -130,58 +181,30 @@ export function LandingPage() {
           </div>
         </section>
 
-        <section className="py-24 bg-[#f6f5f4]">
+        <section id="how-it-works" className="py-24 bg-white">
           <div className="container px-4 md:px-6">
             <h2 className="text-3xl font-bold tracking-tight text-center mb-16">
-              Tired of building something no one wants?
+              How It Works
             </h2>
-            <div className="grid gap-8 md:grid-cols-3">
-              {painPoints.map((point, index) => (
-                <Card key={index} className="bg-white border-0 shadow-sm hover:shadow-md transition-shadow">
-                  <CardHeader>
-                    <div className="mx-auto mb-4">
-                      {React.cloneElement(point.icon, { className: "w-12 h-12 text-black" })}
-                    </div>
-                    <CardTitle className="text-xl">{point.title}</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-gray-500">{point.description}</p>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section className="py-24 bg-white">
-          <div className="container px-4 md:px-6">
-            <div className="text-center mb-16">
-              <h2 className="text-3xl font-bold tracking-tight mb-4">
-                VentureSprint: Your Guide to Faster, Smarter Venture Creation
-              </h2>
-              <p className="text-gray-500 text-xl max-w-2xl mx-auto">
-                A complete framework that guides you from idea to validated product, powered by AI
-              </p>
-            </div>
-            <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-4">
-              {solutionFeatures.map((feature, index) => (
-                <div key={index} className="group relative">
-                  <div className="mb-4">
-                    {React.cloneElement(feature.icon, { className: "w-12 h-12 text-black" })}
+            <div className="grid gap-12 md:grid-cols-3">
+              {steps.map((step, index) => (
+                <div key={index} className="flex flex-col items-center text-center group">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-full bg-black text-white mb-6 font-medium">
+                    {index + 1}
                   </div>
-                  <h3 className="text-lg font-semibold mb-2">{feature.title}</h3>
-                  <p className="text-gray-500">{feature.description}</p>
+                  <h3 className="text-xl font-semibold mb-2">{step.title}</h3>
+                  <p className="text-gray-500">{step.description}</p>
                 </div>
               ))}
             </div>
           </div>
         </section>
 
-        <section id="features" className="py-24 bg-white">
+        <section id="features" className="py-24 bg-[#f6f5f4]">
           <div className="container px-4 md:px-6">
             <div className="text-center mb-16">
               <h2 className="text-3xl font-bold tracking-tight mb-4">
-                Everything You Need to Create Products People Love
+              VentureSprint: Everything You Need to Create Products People Love
               </h2>
               <p className="text-xl text-gray-500 max-w-2xl mx-auto">
                 A complete toolkit for validating your product ideas with real users
@@ -208,25 +231,6 @@ export function LandingPage() {
                     </ul>
                   </CardContent>
                 </Card>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section id="how-it-works" className="py-24 bg-[#f6f5f4]">
-          <div className="container px-4 md:px-6">
-            <h2 className="text-3xl font-bold tracking-tight text-center mb-16">
-              How It Works
-            </h2>
-            <div className="grid gap-12 md:grid-cols-3">
-              {steps.map((step, index) => (
-                <div key={index} className="flex flex-col items-center text-center group">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-full bg-black text-white mb-6 font-medium">
-                    {index + 1}
-                  </div>
-                  <h3 className="text-xl font-semibold mb-2">{step.title}</h3>
-                  <p className="text-gray-500">{step.description}</p>
-                </div>
               ))}
             </div>
           </div>
@@ -372,6 +376,26 @@ export function LandingPage() {
             </div>
           </div>
         </section>
+
+        <section className="py-24 bg-white border-t border-gray-200">
+          <div className="container px-4 md:px-6">
+            <div className="max-w-2xl mx-auto text-center">
+              <h2 className="text-3xl font-bold tracking-tight mb-4">
+                Stay Updated
+              </h2>
+              <p className="text-xl text-gray-500 mb-8">
+                Get the latest startup validation tips and resources delivered straight to your inbox.
+              </p>
+              <div className="max-w-md mx-auto">
+                <SubscribeForm 
+                  group="newsletter-footer"
+                  placeholder="Your email address"
+                  className="h-12 rounded-full"
+                />
+              </div>
+            </div>
+          </div>
+        </section>
       </main>
 
       <footer className="border-t border-gray-200 bg-white">
@@ -444,19 +468,19 @@ export function LandingPage() {
 // Helper constants for content organization
 const painPoints = [
   {
-    icon: <Brain className="w-12 h-12 text-black" />,
-    title: "No Idea Validation",
-    description: "Stop guessing and start validating your ideas with real users"
+    icon: <Clock className="w-12 h-12 text-black" />,
+    title: "Save Time",
+    description: "Don’t waste months chasing ideas that don't fly. Focus on what truly solves a problem with our AI-guided validation."
   },
   {
-    icon: <Target className="w-12 h-12 text-black" />,
-    title: "No Product Market Fit",
-    description: "Find your perfect market fit before investing in development"
+    icon: <Shield className="w-12 h-12 text-black" />,
+    title: "Reduce Risk",
+    description: "Minimize uncertainty with our fast-track process. Quickly define your MVP and steer clear of costly mistakes."
   },
   {
     icon: <DollarSign className="w-12 h-12 text-black" />,
-    title: "No Paying Customers",
-    description: "Convert market interest into actual paying customers"
+    title: "Make Money",
+    description: "Build products customers are eager to pay for. Iterate rapidly towards product-market fit and drive revenue."
   }
 ]
 
