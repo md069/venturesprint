@@ -41,11 +41,7 @@ export function LandingPage() {
             <Link href="#faq" className="text-sm text-gray-600 hover:text-gray-900 transition-colors" onClick={toggleMenu}>FAQ</Link>
           </nav>
           <div className="flex items-center space-x-4">
-            <Link href="/app/login" className="hidden md:inline-flex">
-              <Button variant="ghost" className="text-sm">
-                Log in
-              </Button>
-            </Link>
+            <Button variant="ghost" className="hidden md:inline-flex text-sm">Log in</Button>
             <Dialog>
               <DialogTrigger
                 className="text-sm px-4 py-2 bg-secondary text-primary rounded-full font-medium cursor-pointer"
@@ -166,7 +162,7 @@ export function LandingPage() {
           </div>
         </section>
 
-        <section className="py-24 bg-[#f6f5f4]">
+        <section className="py-24 bg-white border-y border-gray-200">
           <div className="container px-4 md:px-6">
             <div className="grid gap-8 md:grid-cols-3 text-center">
               <div>
@@ -185,26 +181,30 @@ export function LandingPage() {
           </div>
         </section>
 
-        <section id="how-it-works" className="py-24 bg-white">
+        <section className="py-24 bg-[#f6f5f4]">
           <div className="container px-4 md:px-6">
             <h2 className="text-3xl font-bold tracking-tight text-center mb-16">
-              How It Works
+              Tired of building something no one wants?
             </h2>
-            <div className="grid gap-12 md:grid-cols-3">
-              {steps.map((step, index) => (
-                <div key={index} className="flex flex-col items-center text-center group">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-full bg-black text-white mb-6 font-medium">
-                    {index + 1}
-                  </div>
-                  <h3 className="text-xl font-semibold mb-2">{step.title}</h3>
-                  <p className="text-gray-500">{step.description}</p>
-                </div>
+            <div className="grid gap-8 md:grid-cols-3">
+              {painPoints.map((point, index) => (
+                <Card key={index} className="bg-white border-0 shadow-sm hover:shadow-md transition-shadow">
+                  <CardHeader>
+                    <div className="mx-auto mb-4">
+                      {React.cloneElement(point.icon, { className: "w-12 h-12 text-black" })}
+                    </div>
+                    <CardTitle className="text-xl">{point.title}</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-gray-500">{point.description}</p>
+                  </CardContent>
+                </Card>
               ))}
             </div>
           </div>
         </section>
 
-        <section id="features" className="py-24 bg-[#f6f5f4]">
+        <section id="features" className="py-24 bg-white">
           <div className="container px-4 md:px-6">
             <div className="text-center mb-16">
               <h2 className="text-3xl font-bold tracking-tight mb-4">
@@ -235,6 +235,25 @@ export function LandingPage() {
                     </ul>
                   </CardContent>
                 </Card>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section id="how-it-works" className="py-24 bg-[#f6f5f4]">
+          <div className="container px-4 md:px-6">
+            <h2 className="text-3xl font-bold tracking-tight text-center mb-16">
+              How It Works
+            </h2>
+            <div className="grid gap-12 md:grid-cols-3">
+              {steps.map((step, index) => (
+                <div key={index} className="flex flex-col items-center text-center group">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-full bg-black text-white mb-6 font-medium">
+                    {index + 1}
+                  </div>
+                  <h3 className="text-xl font-semibold mb-2">{step.title}</h3>
+                  <p className="text-gray-500">{step.description}</p>
+                </div>
               ))}
             </div>
           </div>
