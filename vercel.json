@@ -1,24 +1,4 @@
 {
   "version": 2,
-  "buildCommand": "turbo build",
-  "builds": [
-    {
-      "src": "apps/web/package.json",
-      "use": "@vercel/next"
-    },
-    {
-      "src": "apps/app/package.json",
-      "use": "@vercel/next"
-    }
-  ],
-  "rewrites": [
-    {
-      "source": "/app/:path*",
-      "destination": "/app/:path*"
-    },
-    {
-      "source": "/:path*",
-      "destination": "/:path*"
-    }
-  ]
+  "buildCommand": "turbo build"
 }

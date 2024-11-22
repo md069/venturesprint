@@ -6,8 +6,7 @@ const nextConfig = {
   transpilePackages: ["@v1/supabase"],
   experimental: {
     instrumentationHook: process.env.NODE_ENV === "production",
-  },
-  basePath: '/app',
+  }
 };
 
 export default withSentryConfig(nextConfig, {
