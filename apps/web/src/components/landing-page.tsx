@@ -41,7 +41,11 @@ export function LandingPage() {
             <Link href="#faq" className="text-sm text-gray-600 hover:text-gray-900 transition-colors" onClick={toggleMenu}>FAQ</Link>
           </nav>
           <div className="flex items-center space-x-4">
-            <Button variant="ghost" className="hidden md:inline-flex text-sm">Log in</Button>
+            <Link href="/app/login" className="hidden md:inline-flex">
+              <Button variant="ghost" className="text-sm">
+                Log in
+              </Button>
+            </Link>
             <Dialog>
               <DialogTrigger
                 className="text-sm px-4 py-2 bg-secondary text-primary rounded-full font-medium cursor-pointer"
