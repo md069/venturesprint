@@ -13,13 +13,11 @@
   ],
   "rewrites": [
     {
-      "source": "/:path*",
-      "has": [
-        {
-          "type": "host",
-          "value": "app.venturesprint.io"
-        }
-      ],
+      "source": "/app/api/:path*",
+      "destination": "apps/app/api/:path*"
+    },
+    {
+      "source": "/app/:path*",
       "destination": "apps/app/:path*"
     },
     {
