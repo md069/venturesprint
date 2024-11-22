@@ -23,12 +23,14 @@ export async function middleware(request: NextRequest) {
     I18nMiddleware(request),
   );
 
-  // Handle root /app path and ensure locale is present
+  // Handle root /app path
   if (pathname === '/app' || pathname === '/app/') {
+    const defaultLocale = 'en';
     if (!user) {
-      return NextResponse.redirect(new URL(`/app/en/login`, request.url));
+      return NextResponse.redirect(new URL(`/app/${defaultLocale}/login`, request.url));
     }
-    return NextResponse.redirect(new URL(`/app/en`, request.url));
+    // Redirect to the dashboard with the default locale
+    return NextResponse.redirect(new URL(`/app/${defaultLocale}`, request.url));
   }
 
   // Get the path after /app
@@ -41,7 +43,6 @@ export async function middleware(request: NextRequest) {
   
   // Redirect to login if user is not authenticated
   if (!user) {
-    // Extract locale from URL or use default
     const urlParts = appPathname.split('/').filter(Boolean);
     const locale = urlParts[0] || 'en';
     return NextResponse.redirect(new URL(`/app/${locale}/login`, request.url));
@@ -52,9 +53,7 @@ export async function middleware(request: NextRequest) {
 
 export const config = {
   matcher: [
-    // Match all paths except static files and api routes
     "/((?!_next/static|api|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)",
-    // Specifically match /app paths
     "/app",
     "/app/:path*"
   ],
