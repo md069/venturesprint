@@ -9,30 +9,34 @@ const I18nMiddleware = createI18nMiddleware({
 });
 
 export async function middleware(request: NextRequest) {
+  // Extract the hostname and pathname
+  const hostname = request.headers.get("host") || "";
+  const pathname = request.nextUrl.pathname;
+
+  // Check if we're on the app subdomain/path
+  const isAppPath = pathname.startsWith('/app');
+  
+  // If this is not an app path, skip middleware processing
+  if (!isAppPath) return NextResponse.next();
+
   const { response, user } = await updateSession(
     request,
     I18nMiddleware(request),
   );
 
-  // Check if the current route is under /app
-  const isAppRoute = request.nextUrl.pathname.startsWith('/app');
+  // Get the path after /app
+  const appPathname = pathname.replace(/^\/app/, '');
   
-  if (isAppRoute) {
-    // Get the path after /app
-    const pathname = request.nextUrl.pathname.replace(/^\/app/, '');
-    
-    // Allow access to login page without authentication
-    if (pathname.includes('/login')) {
-      return response;
-    }
-    
-    // Redirect to login if user is not authenticated
-    if (!user) {
-      const locale = request.nextUrl.locale || 'en';
-      return NextResponse.redirect(
-        new URL(`/app/${locale}/login`, request.url)
-      );
-    }
+  // Allow access to login page without authentication
+  if (appPathname.includes('/login')) {
+    return response;
+  }
+  
+  // Redirect to login if user is not authenticated
+  if (!user) {
+    const locale = request.nextUrl.locale || 'en';
+    const loginUrl = new URL(`/app/${locale}/login`, request.url);
+    return NextResponse.redirect(loginUrl);
   }
 
   return response;
@@ -40,6 +44,9 @@ export async function middleware(request: NextRequest) {
 
 export const config = {
   matcher: [
+    // Match all paths except static files and api routes
     "/((?!_next/static|api|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)",
+    // Specifically match /app paths
+    "/app/:path*",
   ],
 };
