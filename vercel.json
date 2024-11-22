@@ -20,6 +20,21 @@
     ],
     "routes": [
       {
+        "src": "/app$",
+        "status": 307,
+        "headers": {
+          "Location": "/app/en"
+        }
+      },
+      {
+        "src": "/app/en",
+        "dest": "apps/app/en"
+      },
+      {
+        "src": "/app/en/(.*)",
+        "dest": "apps/app/en/$1"
+      },
+      {
         "src": "/app/(.*)",
         "dest": "apps/app/$1"
       },
