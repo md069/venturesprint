@@ -1,4 +1,6 @@
 {
   "version": 2,
-  "buildCommand": "turbo build"
+  "buildCommand": "turbo build",
+  "outputDirectory": "apps/web/.next",
+  "installCommand": "pnpm install"
 }
