@@ -5,6 +5,29 @@
     {
       "src": "apps/web/package.json",
       "use": "@vercel/next"
+    },
+    {
+      "src": "apps/app/package.json",
+      "use": "@vercel/next"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "apps/web/$1",
+      "continue": true
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "app.venturesprint.io"
+        }
+      ],
+      "destination": "apps/app/:path*"
     }
   ]
 }
