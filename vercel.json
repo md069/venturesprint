@@ -1,6 +1,36 @@
 {
-  "version": 2,
-  "buildCommand": "turbo build",
-  "outputDirectory": "apps/web/.next",
-  "installCommand": "bun install"
-}
+    "$schema": "https://openapi.vercel.sh/vercel.json",
+    "version": 2,
+    "buildCommand": "turbo build",
+    "builds": [
+      {
+        "src": "apps/web/package.json",
+        "use": "@vercel/next",
+        "config": {
+          "path": "apps/web"
+        }
+      },
+      {
+        "src": "apps/app/package.json",
+        "use": "@vercel/next",
+        "config": {
+          "path": "apps/app"
+        }
+      }
+    ],
+    "routes": [
+      {
+        "src": "/app/api/(.*)",
+        "dest": "apps/app/api/$1"
+      },
+      {
+        "src": "/app/(.*)",
+        "dest": "apps/app/$1"
+      },
+      {
+        "src": "/(.*)",
+        "dest": "apps/web/$1"
+      }
+    ]
+  }
+  
