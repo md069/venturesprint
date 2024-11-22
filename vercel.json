@@ -11,13 +11,6 @@
       "use": "@vercel/next"
     }
   ],
-  "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "apps/web/$1",
-      "continue": true
-    }
-  ],
   "rewrites": [
     {
       "source": "/:path*",
@@ -28,6 +21,10 @@
         }
       ],
       "destination": "apps/app/:path*"
+    },
+    {
+      "source": "/:path*",
+      "destination": "apps/web/:path*"
     }
   ]
 }
