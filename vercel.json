@@ -13,16 +13,12 @@
   ],
   "rewrites": [
     {
-      "source": "/app/api/:path*",
-      "destination": "apps/app/api/:path*"
-    },
-    {
       "source": "/app/:path*",
-      "destination": "apps/app/:path*"
+      "destination": "/app/:path*"
     },
     {
       "source": "/:path*",
-      "destination": "apps/web/:path*"
+      "destination": "/:path*"
     }
   ]
 }
