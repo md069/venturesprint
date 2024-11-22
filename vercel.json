@@ -24,10 +24,6 @@
         "destination": "apps/app/api/:path*"
       },
       {
-        "source": "/app",
-        "destination": "apps/app/en"
-      },
-      {
         "source": "/app/:path*",
         "destination": "apps/app/:path*"
       },
