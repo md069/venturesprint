@@ -2,5 +2,5 @@
   "version": 2,
   "buildCommand": "turbo build",
   "outputDirectory": "apps/web/.next",
-  "installCommand": "pnpm install"
+  "installCommand": "bun install"
 }
