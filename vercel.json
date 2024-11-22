@@ -24,6 +24,10 @@
         "dest": "apps/app/api/$1"
       },
       {
+        "src": "/app/?$",
+        "dest": "apps/app/en"
+      },
+      {
         "src": "/app/(.*)",
         "dest": "apps/app/$1"
       },

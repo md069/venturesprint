@@ -9,12 +9,11 @@ const I18nMiddleware = createI18nMiddleware({
 });
 
 export async function middleware(request: NextRequest) {
-  // Extract the hostname and pathname
-  const hostname = request.headers.get("host") || "";
+  // Extract the pathname
   const pathname = request.nextUrl.pathname;
 
-  // Check if we're on the app subdomain/path
-  const isAppPath = pathname.startsWith('/app');
+  // Check if we're on the app path
+  const isAppPath = pathname === '/app' || pathname.startsWith('/app/');
   
   // If this is not an app path, skip middleware processing
   if (!isAppPath) return NextResponse.next();
@@ -23,6 +22,14 @@ export async function middleware(request: NextRequest) {
     request,
     I18nMiddleware(request),
   );
+
+  // Handle root /app path and ensure locale is present
+  if (pathname === '/app' || pathname === '/app/') {
+    if (!user) {
+      return NextResponse.redirect(new URL(`/app/en/login`, request.url));
+    }
+    return NextResponse.redirect(new URL(`/app/en`, request.url));
+  }
 
   // Get the path after /app
   const appPathname = pathname.replace(/^\/app/, '');
@@ -34,9 +41,10 @@ export async function middleware(request: NextRequest) {
   
   // Redirect to login if user is not authenticated
   if (!user) {
-    const locale = request.nextUrl.locale || 'en';
-    const loginUrl = new URL(`/app/${locale}/login`, request.url);
-    return NextResponse.redirect(loginUrl);
+    // Extract locale from URL or use default
+    const urlParts = appPathname.split('/').filter(Boolean);
+    const locale = urlParts[0] || 'en';
+    return NextResponse.redirect(new URL(`/app/${locale}/login`, request.url));
   }
 
   return response;
@@ -47,6 +55,7 @@ export const config = {
     // Match all paths except static files and api routes
     "/((?!_next/static|api|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)",
     // Specifically match /app paths
-    "/app/:path*",
+    "/app",
+    "/app/:path*"
   ],
 };
