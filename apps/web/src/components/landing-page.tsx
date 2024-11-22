@@ -21,17 +21,11 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "../../../../packages/ui/src/components/dialog";
-import { useRouter } from "next/navigation"
 
 export function LandingPage() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false)
-  const router = useRouter()
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen)
-
-  const handleLoginClick = () => {
-    router.push('/app/en/login')
-  }
 
   return (
     <div className="flex flex-col min-h-screen bg-white text-gray-800">
@@ -47,13 +41,7 @@ export function LandingPage() {
             <Link href="#faq" className="text-sm text-gray-600 hover:text-gray-900 transition-colors" onClick={toggleMenu}>FAQ</Link>
           </nav>
           <div className="flex items-center space-x-4">
-            <Button 
-              variant="ghost" 
-              className="hidden md:inline-flex text-sm"
-              onClick={handleLoginClick}
-            >
-              Log in
-            </Button>
+            <Button variant="ghost" className="hidden md:inline-flex text-sm">Log in</Button>
             <Dialog>
               <DialogTrigger
                 className="text-sm px-4 py-2 bg-secondary text-primary rounded-full font-medium cursor-pointer"

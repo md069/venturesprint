@@ -18,19 +18,19 @@
         }
       }
     ],
-    "rewrites": [
+    "routes": [
       {
-        "source": "/app/api/:path*",
-        "destination": "apps/app/api/:path*"
+        "src": "/app/api/(.*)",
+        "dest": "apps/app/api/$1"
       },
       {
-        "source": "/app/:path*",
-        "destination": "apps/app/:path*"
+        "src": "/app/(.*)",
+        "dest": "apps/app/$1"
       },
       {
-        "source": "/:path*",
-        "destination": "apps/web/:path*"
+        "src": "/(.*)",
+        "dest": "apps/web/$1"
       }
     ]
-}
+  }
   
