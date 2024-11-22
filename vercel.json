@@ -21,19 +21,15 @@
   "routes": [
     {
       "src": "/app/api/(.*)",
-      "dest": "/apps/app/api/$1"
+      "dest": "apps/app/api/$1"
     },
     {
-      "src": "/app/(.+)",
-      "dest": "/apps/app/$1"
-    },
-    {
-      "src": "/app",
-      "dest": "/apps/app/en"
+      "src": "/app/(.*)",
+      "dest": "apps/app/$1"
     },
     {
       "src": "/(.*)",
-      "dest": "/apps/web/$1"
+      "dest": "apps/web/$1"
     }
   ]
 }
