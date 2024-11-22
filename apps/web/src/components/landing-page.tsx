@@ -181,6 +181,25 @@ export function LandingPage() {
           </div>
         </section>
 
+        <section id="how-it-works" className="py-24 bg-[#f6f5f4]">
+          <div className="container px-4 md:px-6">
+            <h2 className="text-3xl font-bold tracking-tight text-center mb-16">
+              How It Works
+            </h2>
+            <div className="grid gap-12 md:grid-cols-3">
+              {steps.map((step, index) => (
+                <div key={index} className="flex flex-col items-center text-center group">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-full bg-black text-white mb-6 font-medium">
+                    {index + 1}
+                  </div>
+                  <h3 className="text-xl font-semibold mb-2">{step.title}</h3>
+                  <p className="text-gray-500">{step.description}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
         <section className="py-24 bg-[#f6f5f4]">
           <div className="container px-4 md:px-6">
             <h2 className="text-3xl font-bold tracking-tight text-center mb-16">
@@ -235,25 +254,6 @@ export function LandingPage() {
                     </ul>
                   </CardContent>
                 </Card>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section id="how-it-works" className="py-24 bg-[#f6f5f4]">
-          <div className="container px-4 md:px-6">
-            <h2 className="text-3xl font-bold tracking-tight text-center mb-16">
-              How It Works
-            </h2>
-            <div className="grid gap-12 md:grid-cols-3">
-              {steps.map((step, index) => (
-                <div key={index} className="flex flex-col items-center text-center group">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-full bg-black text-white mb-6 font-medium">
-                    {index + 1}
-                  </div>
-                  <h3 className="text-xl font-semibold mb-2">{step.title}</h3>
-                  <p className="text-gray-500">{step.description}</p>
-                </div>
               ))}
             </div>
           </div>

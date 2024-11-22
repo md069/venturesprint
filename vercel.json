@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "buildCommand": "turbo build",
+  "builds": [
+    {
+      "src": "apps/web/package.json",
+      "use": "@vercel/next"
+    }
+  ]
+}
